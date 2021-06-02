@@ -39,9 +39,15 @@ public class Admin {
 		String b = sc.nextLine();
 		boolean res = sbd.adCheck(a, b);
 		if (res == true) {
-			System.out.println("\nAdmin Login Successfull\n \nWelcome " + "[ " + a.toUpperCase() + " ]"
-					+ "~~~~~~~~~~~~~~~~~~~~~~~~***** SAMS ADMIN CONSOLE *****~~~~~~~~~~~~~~~~~~~~~~~~[ Date"
-					+ dtf.format(now) + " ]");
+			System.out.format(
+					"+-------------------------------------------------------------------------------------------------------------------------+%n");
+			System.out.format(
+					"+                                      WELCOME TO SAMS DEPARMENTAL STORE - ADMIN CONSOLE                                  +%n");
+			System.out.format(
+					"+-------------------------------------------------------------------------------------------------------------------------+%n");
+			System.out.format(
+					"+-------------------------------------------------------------------------------------------------------------------------+%n");
+			System.out.format( "Welocme Admin:- "+a+"                                                             Date and Time:- "+dtf.format(now)+"+%n");
 			ad.success(a);
 		} else {
 			System.out.println("\nIncorrect User Name or Password\n");
@@ -54,7 +60,7 @@ public class Admin {
 		wed = new Welcome();
 		sc = new Scanner(System.in);
 		do {
-			System.out.println("Enter the below Options to Continue");
+			System.out.println("\nEnter the below Options to Continue");
 			System.out.println("\n1) Add a new User \n2) Remove User \n3) Update User \n4) Log Out ");
 			int x = sc.nextInt();
 			ad.options(x, a);

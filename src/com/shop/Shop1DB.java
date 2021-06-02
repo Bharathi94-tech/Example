@@ -28,21 +28,22 @@ public class Shop1DB {
 
 	}
 	
-	ResultSet viewOneprod(int a) throws SQLException {
+	String viewOneprod(int a) throws SQLException {
 		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = con.createStatement();
 		String q1 = "Select product_id as ID,product_name as Name, Stock_status,Quantity as Quantity_Remaining,Selling_price,Expiry_date as Expiry,create_id,create_date as Date from stocks where product_id="+a+" order by Date;";
 		ResultSet re = st.executeQuery(q1);
 		re.next();
-		System.out.println(a);
-		System.out.println(re);
-		return re;
+		String w=re.getInt(1)+","+re.getString(2)+","+re.getString(3)+","+re.getInt(4)+","+re.getDouble(5);
+		System.out.println(w);
+		return w;
 	}
 	
 	int updqty(int r,int x,int a) throws SQLException {
 		 Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS); 
 			Statement st=con.createStatement();
-			String up1="Update table stocks set quantity="+x+",update_date='"+ dtf.format(now)+"',update_id='"+a+"' where product_id="+r+";";
+			String up1="Update stocks set quantity="+x+",update_date='"+ dtf.format(now)+"',update_id="+a+" where product_id="+r+";";
+			System.out.println(up1);
 			boolean s=st.execute(up1);
 			if (s==false)
 					{
@@ -55,7 +56,8 @@ public class Shop1DB {
 	{
 		Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st=con.createStatement();
-		String sp="Update table stocks set selling_price='"+x+" ,update_date='"+ dtf.format(now)+"',update_id='"+a+"' where product_id="+r+";"; 
+		String sp="Update stocks set selling_price="+x+",update_date='"+ dtf.format(now)+"',update_id="+a+" where product_id="+r+";";
+		System.out.println(sp);
 		boolean s=st.execute(sp);
 		if (s==false)
 		{
@@ -100,7 +102,7 @@ public class Shop1DB {
 		ResultSet rt=st.executeQuery(pr);
 		rt.next();
 		int x=rt.getInt(1);
-		System.out.println(x);
+		//System.out.println(x);
 		if (x>0) {
 			return 1;
 			

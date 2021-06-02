@@ -60,6 +60,18 @@ public class Stock {
 					r.getString(6), r.getInt(7), r.getDate(8));
 		}
 	}
+	
+	void printOneStock(String r) throws SQLException {
+		// String leftAlignFormat = "|%-9s|%-15s|%-25s|%-18s|%-21s|%-15s|%-15s|%-15s%n";
+		String leftAlignFormat = "%-15s %-15s %15s %15s %20s %n";
+		System.out.format(
+				"+------------+----------------------+--------------------+-------------------+----------------------+%n");
+		System.out.format(
+				"| ID         | Name                 | STOCK_STATUS       | QUANTIT_REM       | SELLING_PRICE        |%n");
+		System.out.format(
+				"+------------+----------------------+--------------------+-------------------+----------------------+%n");
+		System.out.format(leftAlignFormat,r.split(",")[0],r.split(",")[1],r.split(",")[2],r.split(",")[3],r.split(",")[4]);
+		}
 
 	void stDel(int a, String sel) throws SQLException {
 		sbd1 = new Shop1DB();
@@ -171,7 +183,7 @@ public class Stock {
 		wl = new Welcome();
 		System.out.println("\n Enter the Product_id to Edit:- ");
 		int r = sc.nextInt();
-		stk.printStock(sbd1.viewOneprod(r));
+		stk.printOneStock(sbd1.viewOneprod(r));
 		int p1 = sbd1.checkPrdo(r);
 		// System.out.println(p1);
 		if (p1 == 1) {
@@ -234,7 +246,7 @@ public class Stock {
 				"\n Enter the below options to Continue :- \n1) Add Stock \n2) View All Stock Info \n3) Update Stock \n4) Delete a Product from Stock \n5) Exit Stock Room. \n6) Log Out");
 		int x = sc.nextInt();
 		int r = sbd.empStatus(a);
-		System.out.println(r);
+		//System.out.println(r);
 		switch (x) {
 		case 1:
 			if (sel.equals("PRIM") && (r == 1)) {
