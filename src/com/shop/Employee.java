@@ -283,7 +283,7 @@ public class Employee {
 			System.out.format(
 					"+-------------------------------------------------------------------------------------------------------------------------+%n");
 			s.stockSel(a,r);
-			empSelect(a);
+			//empSelect(a);
 			//break;
 		case 3:
 			System.out.println("Enter the new Password");

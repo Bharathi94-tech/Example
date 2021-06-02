@@ -28,9 +28,55 @@ public class Shop1DB {
 
 	}
 	
-	void checkQty()
-	{
+	ResultSet viewOneprod(int a) throws SQLException {
+		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
+		Statement st = con.createStatement();
+		String q1 = "Select product_id as ID,product_name as Name, Stock_status,Quantity as Quantity_Remaining,Selling_price,Expiry_date as Expiry,create_id,create_date as Date from stocks where product_id="+a+" order by Date;";
+		ResultSet re = st.executeQuery(q1);
+		re.next();
+		System.out.println(a);
+		System.out.println(re);
+		return re;
+	}
+	
+	int updqty(int r,int x,int a) throws SQLException {
+		 Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS); 
+			Statement st=con.createStatement();
+			String up1="Update table stocks set quantity="+x+",update_date='"+ dtf.format(now)+"',update_id='"+a+"' where product_id="+r+";";
+			boolean s=st.execute(up1);
+			if (s==false)
+					{
+				return 1;
+					}else return 0;
 		
+	}
+	
+	int updSellp(int r,double x,int a) throws SQLException
+	{
+		Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
+		Statement st=con.createStatement();
+		String sp="Update table stocks set selling_price='"+x+" ,update_date='"+ dtf.format(now)+"',update_id='"+a+"' where product_id="+r+";"; 
+		boolean s=st.execute(sp);
+		if (s==false)
+		{
+			return 1;
+		}else return 0;
+	}
+	
+	int checkQty(int a) throws SQLException
+	{
+		Connection conn=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
+		Statement st=conn.createStatement();
+		String sq="Select quantity from stocks where product_id="+a+";";
+		System.out.println(sq);
+		ResultSet r=st.executeQuery(sq);
+		r.next();
+		int s=r.getInt(1);
+		System.out.println(s);
+		if (s>=0)
+		{
+			return s;
+		}else return 0;
 	}
 
 	boolean addStock(StcAndCust ob, int a) throws SQLException {
@@ -50,10 +96,11 @@ public class Shop1DB {
 	{
 		Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st=con.createStatement();
-		String pr="Select count(*) from stocks where product_id="+a+");";
+		String pr="Select count(*) from stocks where product_id="+a+";";
 		ResultSet rt=st.executeQuery(pr);
 		rt.next();
 		int x=rt.getInt(1);
+		System.out.println(x);
 		if (x>0) {
 			return 1;
 			
@@ -103,6 +150,8 @@ public class Shop1DB {
 		
 		
 	}
+
+	 
 	
 	
 }

@@ -165,25 +165,62 @@ public class Stock {
 	}
 
 	void stockUpd(int a, String sel) throws SQLException {
-		sc=new Scanner (System.in);
-		sbd1=new Shop1DB();
+		sc = new Scanner(System.in);
+		sbd1 = new Shop1DB();
+		stk = new Stock();
+		wl = new Welcome();
 		System.out.println("\n Enter the Product_id to Edit:- ");
-		int r=sc.nextInt();
-		int x=sbd1.checkPrdo(r);
-		if (x==1)
-		{
-			System.out.println("\n Enter the below  Options to Update:- \n1) Quantity \n2) Selling Price \n3) Expiry Date");
-			int f=sc.nextInt();
-		
-		switch(f)
-		{
-		case 1:
-			System.out.println("Enter the  Quanntity to add or reduce");
-		
-		}}
-	
-		else {System.out.println("\n Entered Product Not Availabe");}
-				
+		int r = sc.nextInt();
+		stk.printStock(sbd1.viewOneprod(r));
+		int p1 = sbd1.checkPrdo(r);
+		// System.out.println(p1);
+		if (p1 == 1) {
+			System.out.println(
+					"\n Enter the below  Options to Update:- \n1) Quantity \n2) Selling Price \n3) Back \n4) Log Out");
+			int f = sc.nextInt();
+
+			switch (f) {
+			case 1:
+				System.out.println("\n Enter the below Options to Update:- ");
+				System.out.println("\n1) To Add \n2) To Reduce");
+				int se = sc.nextInt();
+				if (se == 1) {
+					System.out.println("\nEnter the  Quantity to add:- ");
+					int d = sc.nextInt();
+					int q = sbd1.checkQty(r);
+					d = d + q;
+					sbd1.updqty(r, d,a);
+					stk.stockSel(a, sel);
+				}
+				if (se == 2) {
+					System.out.println("\nEnter the  Quantity to Reduce:- ");
+					int d = sc.nextInt();
+					int q = sbd1.checkQty(r);
+					d = q - d;
+					sbd1.updqty(r, d,a);
+					stk.stockSel(a, sel);
+				}
+
+			case 2:
+				System.out.println("\nEnter the Selling Price to Update:- ");
+				double x = sc.nextDouble();
+				int re = sbd1.updSellp(r,x,a);
+				if (re == 1) {
+					System.out.println("\n Updated the Selling Price");
+					stk.stockSel(a, sel);
+				} else
+					System.out.println("\n Updating the Selling Price is Unscuccessful");
+				stk.stockSel(a, sel);
+
+			case 3:
+				stk.stockSel(a, sel);
+				break;
+
+			case 4:
+				wl.w1();
+			}
+		} else
+			System.out.println("\n Entered Product ID is Invalid or Product not present in the Stock Room");
 
 	}
 
@@ -191,12 +228,13 @@ public class Stock {
 		sc = new Scanner(System.in);
 		sbd = new ShopDB();
 		wl = new Welcome();
+		e = new Employee();
+		stk = new Stock();
 		System.out.println(
 				"\n Enter the below options to Continue :- \n1) Add Stock \n2) View All Stock Info \n3) Update Stock \n4) Delete a Product from Stock \n5) Exit Stock Room. \n6) Log Out");
 		int x = sc.nextInt();
 		int r = sbd.empStatus(a);
-		e = new Employee();
-		stk = new Stock();
+		System.out.println(r);
 		switch (x) {
 		case 1:
 			if (sel.equals("PRIM") && (r == 1)) {
@@ -209,12 +247,12 @@ public class Stock {
 			stk.stView(a);
 			stk.stockSel(a, sel);
 
-			case 3:
-				if (sel.equals("PRIM") && (r == 1)) {
-					stk.stockUpd(a, sel);
-					stk.stockSel(a, sel);
-				} else
-					System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
+		case 3:
+			if (sel.equals("PRIM") && (r == 1)) {
+				stk.stockUpd(a, sel);
+				stk.stockSel(a, sel);
+			} else
+				System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
 		case 4:
 			stk.stDel(a, sel);
 			stk.stockSel(a, sel);
