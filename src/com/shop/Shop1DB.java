@@ -153,7 +153,16 @@ public class Shop1DB {
 		
 	}
 
-	 
+	 String showProd(String x) throws SQLException
+	 {
+		 Connection con=DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
+		 Statement st=con.createStatement();
+		 String p="select product_name,Product_id,Selling_price from stocks where product_name like '"+x+"%' and stock_status='Y';";
+		 ResultSet rs=st.executeQuery(p);
+		 rs.next();
+		 String e=rs.getString(1)+","+rs.getInt(2)+","+rs.getDouble(3);
+		 return e;
+	 }
 	
 	
 }

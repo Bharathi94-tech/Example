@@ -266,9 +266,10 @@ public class Stock {
 			} else
 				System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
 		case 4:
+			if (sel.equals("PRIM") && (r == 1)) {
 			stk.stDel(a, sel);
 			stk.stockSel(a, sel);
-
+			}else System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
 		case 5:
 			e.empSelect(a);
 		case 6:

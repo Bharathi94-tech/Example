@@ -9,6 +9,7 @@ public class Welcome {
 	Scanner sc;
 	Admin ad;
 	Employee e;
+	StandBl bl;
 	Welcome wl;
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
@@ -29,6 +30,7 @@ public class Welcome {
 	void optionS(int x) throws SQLException {
 		e=new Employee();
 		ad=new Admin();
+		bl=new StandBl();
 		switch (x) {
 		case 1:
 			ad.login();
@@ -38,7 +40,9 @@ public class Welcome {
 			e.empLog();
 			break;
 			
-		
+		/*
+		 * case 3: bl.stMg(); break;
+		 */
 				
 		case 5:
 			System.out.println("Successfully Logged out");

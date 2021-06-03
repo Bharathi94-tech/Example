@@ -14,6 +14,7 @@ public class Employee {
 	LocalDateTime now = LocalDateTime.now();
 	Employee e;
 	AdminDto adm;
+	StandBl sbl;
 	Admin ad;
 	ShopDB sbd;
 	Scanner sc;
@@ -172,7 +173,7 @@ public class Employee {
 
 		case 3:
 			int r = sbd.empStatus(y);
-			if (r ==1) {
+			if (r == 1) {
 				System.out.println("Status of Employee " + y + " is Active");
 			} else
 				System.out.println("Status of Employee " + y + " is InActive");
@@ -234,7 +235,8 @@ public class Employee {
 			String pa = sc.next();
 			int ret = sbd.empChgPass(i, pa);
 			if (ret == 1) {
-				System.out.println("\n PassWord for the Employee ID " + i + "is Changed and Continue with New Password");
+				System.out
+						.println("\n PassWord for the Employee ID " + i + "is Changed and Continue with New Password");
 				wl.w1();
 			} else
 				System.out.println("\n PassWord change unsuccessful or the Entered ID is Incorrect");
@@ -254,21 +256,29 @@ public class Employee {
 
 	void empSelect(int a) throws SQLException {
 		sc = new Scanner(System.in);
-		sbd=new ShopDB();
-		s=new Stock();
-		String r="";
-		System.out.println("\n Please select the Options below \n1) Billing \n2) Stocks \n3) Change Password \n4) Log Out");
+		sbd = new ShopDB();
+		sbl = new StandBl();
+		e = new Employee();
+		s = new Stock();
+		String r = "";
+		System.out.println(
+				"\n Please select the Options below \n1) Billing \n2) Stocks \n3) Change Password \n4) Log Out");
 		int x = sc.nextInt();
 		switch (x)
 
 		{
 		case 1:
-			/*
-			 * b.billinlog(); sbd.bill(a,"BILL"); break;
-			 */
+
+			String k = sbd.bill(a, "BILL");
+			if (k.equals("PRIM")) {
+				sbl.bill();
+			} else
+				System.out.println("\n Employee " + a + " dont have proper permission");
+			e.empSelect(a);
+
 		case 2:
-			r=sbd.stock(a,"STOCK");
-			//System.out.println(r);
+			r = sbd.stock(a, "STOCK");
+			// System.out.println(r);
 			System.out.format(
 					"+-------------------------------------------------------------------------------------------------------------------------+%n");
 			System.out.format(
@@ -282,9 +292,9 @@ public class Employee {
 					+ "%n");
 			System.out.format(
 					"+-------------------------------------------------------------------------------------------------------------------------+%n");
-			s.stockSel(a,r);
-			//empSelect(a);
-			//break;
+			s.stockSel(a, r);
+			// empSelect(a);
+			// break;
 		case 3:
 			System.out.println("Enter the new Password");
 			String s1 = sc.next();

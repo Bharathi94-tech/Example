@@ -45,6 +45,27 @@ private String Cust_Name;
 private long Cust_Mob_Num;
 private int Cust_bill_id;
 private String Cust_addr;
+private String pr_id;
+public String getPr_id() {
+	return pr_id;
+}
+public String getPr_name() {
+	return pr_name;
+}
+public String getSell_price() {
+	return Sell_price;
+}
+public void setPr_id(String pr_id) {
+	this.pr_id = pr_id;
+}
+public void setPr_name(String pr_name) {
+	this.pr_name = pr_name;
+}
+public void setSell_price(String sell_price) {
+	Sell_price = sell_price;
+}
+private String pr_name;
+private String Sell_price;
 
 public int getProduct_id() {
 	return Product_id;
@@ -78,8 +99,8 @@ public String getCust_addr() {
 }
 
 
-public void setProduct_id(int product_id) {
-	Product_id = product_id;
+public void setProduct_id(int i) {
+	Product_id = i;
 }
 public void setProduct_name(String product_name) {
 	Product_name = product_name;
@@ -87,8 +108,8 @@ public void setProduct_name(String product_name) {
 public void setPrice(double d) {
 	Price = d;
 }
-public void setQuantity(int quantity) {
-	Quantity = quantity;
+public void setQuantity(int i) {
+	Quantity = i;
 }
 public void setAgent(String agent) {
 	Agent = agent;

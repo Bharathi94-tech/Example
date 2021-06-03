@@ -120,17 +120,18 @@ public class ShopDB {
 			Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 			Statement st = con.createStatement();
 			String i = "select bill_role from employee where emp_id=" + x + ";";
-			System.out.println(i);
+			//System.out.println(i);
 			ResultSet rew = st.executeQuery(i);
 			rew.next();
 			String p = rew.getString(1);
-			System.out.println(p);
+			//System.out.println(p);
 			con.close();
-			if (p == "PRIM") {
+			if (p.equals("PRIM")) {
 				ch = "PRIM";
 				return ch;
+				
 			}
-			if (p == "SEC") {
+			if (p.equals("SEC")) {
 				ch = "SEC";
 				return ch;
 			}
