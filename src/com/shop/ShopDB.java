@@ -256,7 +256,7 @@ public class ShopDB {
 		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = con.createStatement();
 		boolean te = sb.empidcheck(us);
-		String def = "Select count(*) from employee where password='" + pa + "';";
+		String def = "Select count(*) from employee where password='" + pa + "' and emp_id="+us+";";
 		System.out.println(def);
 		ResultSet ref = st.executeQuery(def);
 		ref.next();

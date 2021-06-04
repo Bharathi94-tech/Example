@@ -42,7 +42,13 @@ private int Quantity;
 private String Agent;
 private int Customer_id;
 private String Cust_Name;
-private long Cust_Mob_Num;
+private long cust_mb_num;
+public long getCust_mb_num() {
+	return cust_mb_num;
+}
+public void setCust_mb_num(long cust_mb_num) {
+	this.cust_mb_num = cust_mb_num;
+}
 private int Cust_bill_id;
 private String Cust_addr;
 private String pr_id;
@@ -88,9 +94,7 @@ public int getCustomer_id() {
 public String getCust_Name() {
 	return Cust_Name;
 }
-public long getCust_Mob_Num() {
-	return Cust_Mob_Num;
-}
+
 public int getCust_bill_id() {
 	return Cust_bill_id;
 }
@@ -117,21 +121,18 @@ public void setAgent(String agent) {
 public void setCustomer_id(int customer_id) {
 	Customer_id = customer_id;
 }
-public void setCust_Name(String cust_Name) {
-	Cust_Name = cust_Name;
-}
-public void setCust_Mob_Num(long cust_Mob_Num) {
-	Cust_Mob_Num = cust_Mob_Num;
+public String setCust_Name(String cust_Name) {
+	return Cust_Name = cust_Name;
+
 }
 public void setCust_bill_id(int cust_bill_id) {
 	Cust_bill_id = cust_bill_id;
 }
-public void setCust_addr(String cust_addr) {
-	Cust_addr = cust_addr;
+public String setCust_addr(String cust_addr) {
+	return Cust_addr = cust_addr;
+}
+
 }
 
 
 
-
-
-}

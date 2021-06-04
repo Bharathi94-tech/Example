@@ -271,7 +271,8 @@ public class Employee {
 
 			String k = sbd.bill(a, "BILL");
 			if (k.equals("PRIM")) {
-				sbl.bill();
+				sbl.bill(a);
+				e.empSelect(a);
 			} else
 				System.out.println("\n Employee " + a + " dont have proper permission");
 			e.empSelect(a);
@@ -293,7 +294,7 @@ public class Employee {
 			System.out.format(
 					"+-------------------------------------------------------------------------------------------------------------------------+%n");
 			s.stockSel(a, r);
-			// empSelect(a);
+			e.empSelect(a);
 			// break;
 		case 3:
 			System.out.println("Enter the new Password");

@@ -11,6 +11,7 @@ public class Welcome {
 	Employee e;
 	StandBl bl;
 	Welcome wl;
+	Stock stk;
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	
@@ -30,7 +31,7 @@ public class Welcome {
 	void optionS(int x) throws SQLException {
 		e=new Employee();
 		ad=new Admin();
-		bl=new StandBl();
+		stk= new Stock();
 		switch (x) {
 		case 1:
 			ad.login();
@@ -40,9 +41,12 @@ public class Welcome {
 			e.empLog();
 			break;
 			
-		/*
-		 * case 3: bl.stMg(); break;
-		 */
+		
+		  case 3:
+			  
+			  stk.stMg();
+			  break;
+		 
 				
 		case 5:
 			System.out.println("Successfully Logged out");

@@ -235,6 +235,11 @@ public class Stock {
 			System.out.println("\n Entered Product ID is Invalid or Product not present in the Stock Room");
 
 	}
+	
+	void stkMg()
+	{
+		
+	}
 
 	void stockSel(int a, String sel) throws SQLException {
 		sc = new Scanner(System.in);
@@ -277,5 +282,10 @@ public class Stock {
 
 		}
 
+	}
+	
+	void stMg()
+	{
+		
 	}
 }
