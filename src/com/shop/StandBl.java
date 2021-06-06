@@ -138,8 +138,8 @@ public class StandBl {
 
 	void printBill(int emp, long mob, ArrayList<String> arr) throws SQLException {
 		sbd1 = new Shop1DB();
-		sbl=new StandBl();
-		e=new Employee();
+		sbl = new StandBl();
+		e = new Employee();
 		sc = new Scanner(System.in);
 		String leftAlignFormat = "%-13s %-25s %-25s %-25s %-25s %-25s %n";
 		System.out.format(
@@ -173,6 +173,10 @@ public class StandBl {
 			String c = arr.get(i).split(",")[2];
 			double d = Double.parseDouble(arr.get(i).split(",")[4]);
 			int e = Integer.parseInt(arr.get(i).split(",")[3]);
+			int su = sbd1.deductStock(b, e, emp);
+			if (su <= 0) {
+				System.out.println("\n Stocks Not Updated....PLease Retry again....");
+			}
 			double it_price = e * d;
 			grand_Total = grand_Total + it_price;
 			System.out.format(leftAlignFormat, a, b, c, d, e, it_price);
@@ -213,12 +217,14 @@ public class StandBl {
 		if (u == '1') {
 			System.out.println(
 					"\n --------------------------------------------BILL GENERATED SUCCESSFULLY--------------------------------------------");
+
 		}
 		System.out.println("TO  CONTINUE BILLING PRESS '1' or '2' FOR MAIN MENU");
-		int l=sc.nextInt();
-		if (l==1) {
-		sbl.bill(emp);}
-		else e.empSelect(emp);
+		int l = sc.nextInt();
+		if (l == 1) {
+			sbl.bill(emp);
+		} else
+			e.empSelect(emp);
 
 	}
 

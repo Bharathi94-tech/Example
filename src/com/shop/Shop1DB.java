@@ -47,7 +47,7 @@ public class Shop1DB {
 		Statement st = con.createStatement();
 		String up1 = "Update stocks set quantity=" + x + ",update_date='" + dtf.format(now) + "',update_id=" + a
 				+ " where product_id=" + r + ";";
-		//System.out.println(up1);
+		System.out.println(up1);
 		boolean s = st.execute(up1);
 		if (s == false) {
 			return 1;
@@ -226,6 +226,23 @@ public class Shop1DB {
 		} else
 			return 0;
 
+	}
+	
+	int deductStock(int a,int b,int emp) throws SQLException {
+		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
+		Statement t = con.createStatement();
+		String q="select quantity from stocks where product_id="+a+";";
+		ResultSet det=t.executeQuery(q);
+		det.next();
+		int qt=det.getInt(1);
+		int re=qt-b;
+		String q1="Update stocks set quantity="+re+",update_id="+emp+",update_date='"+dtf.format(now)+"' where product_id="+a+";";
+		//System.out.println(q1);
+		boolean det1=t.execute(q1);
+		if (det1==false)
+		{
+			return 1;
+		}else return 0;
 	}
 	
 }

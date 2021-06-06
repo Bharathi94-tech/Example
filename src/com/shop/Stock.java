@@ -33,10 +33,9 @@ public class Stock {
 		int s = sbd.empStatus(a);
 
 		if (s == 1) {
-			System.out.println("\n --------------------------------------------ITEMS IN STOCK--------------------------------------------\n");
+			System.out.println(
+					"\n --------------------------------------------ITEMS IN STOCK--------------------------------------------\n");
 			ResultSet rs = sbd1.viewStock();
-			// aString [] tableHeaders=
-			// {"ID","NAME","STOCK_STATUS","QUANTITY_REAMINING","SELLING_PRICE","EXPIRY","CREATE_ID","DATE"};
 			stk.printStock(rs);
 		} else
 			System.out.println("\n ----------------------Employee Not in Active Status----------------------");
@@ -60,7 +59,7 @@ public class Stock {
 					r.getString(6), r.getInt(7), r.getDate(8));
 		}
 	}
-	
+
 	void printOneStock(String r) throws SQLException {
 		// String leftAlignFormat = "|%-9s|%-15s|%-25s|%-18s|%-21s|%-15s|%-15s|%-15s%n";
 		String leftAlignFormat = "%-15s %-15s %15s %15s %20s %n";
@@ -70,8 +69,9 @@ public class Stock {
 				"| ID         | Name                 | STOCK_STATUS       | QUANTIT_REM       | SELLING_PRICE        |%n");
 		System.out.format(
 				"+------------+----------------------+--------------------+-------------------+----------------------+%n");
-		System.out.format(leftAlignFormat,r.split(",")[0],r.split(",")[1],r.split(",")[2],r.split(",")[3],r.split(",")[4]);
-		}
+		System.out.format(leftAlignFormat, r.split(",")[0], r.split(",")[1], r.split(",")[2], r.split(",")[3],
+				r.split(",")[4]);
+	}
 
 	void stDel(int a, String sel) throws SQLException {
 		sbd1 = new Shop1DB();
@@ -201,7 +201,7 @@ public class Stock {
 					int d = sc.nextInt();
 					int q = sbd1.checkQty(r);
 					d = d + q;
-					sbd1.updqty(r, d,a);
+					sbd1.updqty(r, d, a);
 					stk.stockSel(a, sel);
 				}
 				if (se == 2) {
@@ -209,19 +209,20 @@ public class Stock {
 					int d = sc.nextInt();
 					int q = sbd1.checkQty(r);
 					d = q - d;
-					sbd1.updqty(r, d,a);
+					sbd1.updqty(r, d, a);
 					stk.stockSel(a, sel);
 				}
 
 			case 2:
 				System.out.println("\nEnter the Selling Price to Update:- ");
 				double x = sc.nextDouble();
-				int re = sbd1.updSellp(r,x,a);
+				int re = sbd1.updSellp(r, x, a);
 				if (re == 1) {
 					System.out.println("\n ----------------------Updated the Selling Price----------------------");
 					stk.stockSel(a, sel);
 				} else
-					System.out.println("\n ----------------------Updating the Selling Price is Unscuccessful----------------------");
+					System.out.println(
+							"\n ----------------------Updating the Selling Price is Unscuccessful----------------------");
 				stk.stockSel(a, sel);
 
 			case 3:
@@ -232,13 +233,13 @@ public class Stock {
 				wl.w1();
 			}
 		} else
-			System.out.println("\n ----------------------Entered Product ID is Invalid or Product not present in the Stock Room----------------------");
+			System.out.println(
+					"\n ----------------------Entered Product ID is Invalid or Product not present in the Stock Room----------------------");
 
 	}
-	
-	void stkMg()
-	{
-		
+
+	void stkMg() {
+
 	}
 
 	void stockSel(int a, String sel) throws SQLException {
@@ -251,14 +252,15 @@ public class Stock {
 				"\n ----------------------Enter the below options to Continue---------------------- \n1) Add Stock \n2) View All Stock Info \n3) Update Stock \n4) Delete a Product from Stock \n5) Exit Stock Room. \n6) Log Out");
 		int x = sc.nextInt();
 		int r = sbd.empStatus(a);
-		//System.out.println(r);
+		// System.out.println(r);
 		switch (x) {
 		case 1:
 			if (sel.equals("PRIM") && (r == 1)) {
 				stk.stAdd(a, sel);
 				stk.stockSel(a, sel);
 			} else
-				System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
+				System.out.println("\n ----------------------Employe ID :- " + a
+						+ " is not having the Required Permission to add the Stock----------------------");
 
 		case 2:
 			stk.stView(a);
@@ -269,12 +271,15 @@ public class Stock {
 				stk.stockUpd(a, sel);
 				stk.stockSel(a, sel);
 			} else
-				System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
+				System.out.println("\n ----------------------Employe ID :- " + a
+						+ " is not having the Required Permission to add the Stock----------------------");
 		case 4:
 			if (sel.equals("PRIM") && (r == 1)) {
-			stk.stDel(a, sel);
-			stk.stockSel(a, sel);
-			}else System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
+				stk.stDel(a, sel);
+				stk.stockSel(a, sel);
+			} else
+				System.out.println("\n ----------------------Employe ID :- " + a
+						+ " is not having the Required Permission to add the Stock----------------------");
 		case 5:
 			e.empSelect(a);
 		case 6:
@@ -283,5 +288,5 @@ public class Stock {
 		}
 
 	}
-	
+
 }
