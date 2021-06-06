@@ -33,13 +33,13 @@ public class Stock {
 		int s = sbd.empStatus(a);
 
 		if (s == 1) {
-			System.out.println("\n Stocks in Range are:- \n");
+			System.out.println("\n --------------------------------------------ITEMS IN STOCK--------------------------------------------\n");
 			ResultSet rs = sbd1.viewStock();
 			// aString [] tableHeaders=
 			// {"ID","NAME","STOCK_STATUS","QUANTITY_REAMINING","SELLING_PRICE","EXPIRY","CREATE_ID","DATE"};
 			stk.printStock(rs);
 		} else
-			System.out.println("\n Employee Not in Active Status");
+			System.out.println("\n ----------------------Employee Not in Active Status----------------------");
 		e.empSelect(a);
 		return null;
 
@@ -116,7 +116,7 @@ public class Stock {
 		stc.setProduct_id(sc.nextInt());
 		int r = sbd1.checkSt(stc.getProduct_id());
 		if (r == 0) {
-			System.out.println("\nProduct Already Present..Please Confirm");
+			System.out.println("\n----------------------Product Already Present..Please Confirm----------------------");
 
 			stk.stockSel(a, sel);
 
@@ -193,7 +193,7 @@ public class Stock {
 
 			switch (f) {
 			case 1:
-				System.out.println("\n Enter the below Options to Update:- ");
+				System.out.println("\n ----Enter the below Options to Update----");
 				System.out.println("\n1) To Add \n2) To Reduce");
 				int se = sc.nextInt();
 				if (se == 1) {
@@ -218,10 +218,10 @@ public class Stock {
 				double x = sc.nextDouble();
 				int re = sbd1.updSellp(r,x,a);
 				if (re == 1) {
-					System.out.println("\n Updated the Selling Price");
+					System.out.println("\n ----------------------Updated the Selling Price----------------------");
 					stk.stockSel(a, sel);
 				} else
-					System.out.println("\n Updating the Selling Price is Unscuccessful");
+					System.out.println("\n ----------------------Updating the Selling Price is Unscuccessful----------------------");
 				stk.stockSel(a, sel);
 
 			case 3:
@@ -232,7 +232,7 @@ public class Stock {
 				wl.w1();
 			}
 		} else
-			System.out.println("\n Entered Product ID is Invalid or Product not present in the Stock Room");
+			System.out.println("\n ----------------------Entered Product ID is Invalid or Product not present in the Stock Room----------------------");
 
 	}
 	
@@ -248,7 +248,7 @@ public class Stock {
 		e = new Employee();
 		stk = new Stock();
 		System.out.println(
-				"\n Enter the below options to Continue :- \n1) Add Stock \n2) View All Stock Info \n3) Update Stock \n4) Delete a Product from Stock \n5) Exit Stock Room. \n6) Log Out");
+				"\n ----------------------Enter the below options to Continue---------------------- \n1) Add Stock \n2) View All Stock Info \n3) Update Stock \n4) Delete a Product from Stock \n5) Exit Stock Room. \n6) Log Out");
 		int x = sc.nextInt();
 		int r = sbd.empStatus(a);
 		//System.out.println(r);
@@ -258,7 +258,7 @@ public class Stock {
 				stk.stAdd(a, sel);
 				stk.stockSel(a, sel);
 			} else
-				System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
+				System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
 
 		case 2:
 			stk.stView(a);
@@ -269,12 +269,12 @@ public class Stock {
 				stk.stockUpd(a, sel);
 				stk.stockSel(a, sel);
 			} else
-				System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
+				System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
 		case 4:
 			if (sel.equals("PRIM") && (r == 1)) {
 			stk.stDel(a, sel);
 			stk.stockSel(a, sel);
-			}else System.out.println("\n Employe ID :-" + a + " is not having the Required Permission to add the Stock");
+			}else System.out.println("\n ----------------------Employe ID :- "+ a +" is not having the Required Permission to add the Stock----------------------");
 		case 5:
 			e.empSelect(a);
 		case 6:
@@ -284,8 +284,4 @@ public class Stock {
 
 	}
 	
-	void stMg()
-	{
-		
-	}
 }

@@ -38,7 +38,7 @@ public class Shop1DB {
 		re.next();
 		String w = re.getInt(1) + "," + re.getString(2) + "," + re.getString(3) + "," + re.getInt(4) + ","
 				+ re.getDouble(5);
-		System.out.println(w);
+		//System.out.println(w);
 		return w;
 	}
 
@@ -47,7 +47,7 @@ public class Shop1DB {
 		Statement st = con.createStatement();
 		String up1 = "Update stocks set quantity=" + x + ",update_date='" + dtf.format(now) + "',update_id=" + a
 				+ " where product_id=" + r + ";";
-		System.out.println(up1);
+		//System.out.println(up1);
 		boolean s = st.execute(up1);
 		if (s == false) {
 			return 1;
@@ -61,7 +61,7 @@ public class Shop1DB {
 		Statement st = con.createStatement();
 		String sp = "Update stocks set selling_price=" + x + ",update_date='" + dtf.format(now) + "',update_id=" + a
 				+ " where product_id=" + r + ";";
-		System.out.println(sp);
+		//System.out.println(sp);
 		boolean s = st.execute(sp);
 		if (s == false) {
 			return 1;
@@ -73,11 +73,11 @@ public class Shop1DB {
 		Connection conn = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = conn.createStatement();
 		String sq = "Select quantity from stocks where product_id=" + a + ";";
-		System.out.println(sq);
+		//System.out.println(sq);
 		ResultSet r = st.executeQuery(sq);
 		r.next();
 		int s = r.getInt(1);
-		System.out.println(s);
+		//System.out.println(s);
 		if (s >= 0) {
 			return s;
 		} else
@@ -190,8 +190,8 @@ public class Shop1DB {
 	int genBill(int a,long mob,String m) throws SQLException {
 		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = con.createStatement();
-		String p = "Insert into bill values "+"("+"default,'"+a+"',str_to_date('"+ dtf1.format(now)+"','%d/%m/%Y %H:%i:%s'),NULL,'"+m+"','"+mob+"',NULL"+");";
-		System.out.println(p);
+		String p = "Insert into bill values "+"(NULL,'"+a+"',str_to_date('"+ dtf1.format(now)+"','%d/%m/%Y %H:%i:%s'),NULL,'"+m+"','"+mob+"',NULL"+");";
+		//System.out.println(p);
 		boolean e=st.execute(p);
 		if (e==false) {
 			return 1;
@@ -219,7 +219,7 @@ public class Shop1DB {
 		String q = "Insert into customer values " + "('" + bill.getCust_Name() + "','" + bill.getCust_addr() + "',"
 				+ bill.getCust_mb_num() + ",str_to_date('" + dtf1.format(now) + "','%d/%m/%Y %H:%i:%s')," + a
 				+ ",NULL,NULL,NULL);";
-		System.out.println(q);
+		//System.out.println(q);
 		boolean r = t.execute(q);
 		if (r == false) {
 			return 1;

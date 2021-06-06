@@ -43,9 +43,9 @@ public class ShopDB {
 				+ adm.getBill_role() + "','" + adm.getStock_role() + "','" + adm.getActive_ind() + "','"
 				+ adm.getEmp_place() + "'," + adm.getEmp_age() + ",'" + adm.getEmp_address() + "'," + adm.getEmp_mn()
 				+ ","+ "str_to_date('" + dtf1.format(now) + "','%d/%m/%Y %H:%i:%s'),'" + a + "',NULL,NULL,default,default);";
-		System.out.println(q1);
+		//System.out.println(q1);
 		boolean ref = st.execute(q1);
-		System.out.println(ref);
+		//System.out.println(ref);
 		if (ref==false) 
 		{
 			return ref;
@@ -58,17 +58,17 @@ public class ShopDB {
 		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = con.createStatement();
 		String q1 = "select count(*) from employee where emp_id=" + a + " and active_status !='A';";
-		System.out.println(q1);
+		//System.out.println(q1);
 		ResultSet d1 = st.executeQuery(q1);
 		d1.next();
 		int count = d1.getInt(1);
 		if (count <= 0) {
-			System.out.println("Entered Employee Id is Not Present in DataBase or Employee is in Active Status ");
+			System.out.println("\n----------------------Entered Employee Id is Not Present in DataBase or Employee is in Active Status---------------------- ");
 			return false;
 		} else {
 			String del = "delete  from employee where emp_id=" + a + ";";
 			boolean de = st.execute(del);
-			System.out.println("Employee of ID:- " + a + " Deleted Successfully");
+			System.out.println("\n----------------------Employee of ID:- " + a + " Deleted Successfully----------------------");
 			con.close();
 			return de;
 
@@ -86,7 +86,7 @@ public class ShopDB {
 		Connection con = DriverManager.getConnection(DB_URL, AD_UN, AD_PASS);
 		Statement st = con.createStatement();
 		String q1 = "Select count(*) from admin where username='" + a + "' and password='" + b + "';";
-		System.out.println("\n" + q1);
+		//System.out.println("\n" + q1);
 		ResultSet r = st.executeQuery(q1);
 		r.next();
 		int count = r.getInt(1);
@@ -178,9 +178,9 @@ public class ShopDB {
 		Statement st = con.createStatement();
 		String q1 = "Update employee set bill_role='" + sl + "' , update_id='" + z + "', update_date='"
 				+ dtf.format(now) + "' where emp_id=" + x + ";";
-		System.out.println(q1);
+		//System.out.println(q1);
 		boolean e = st.execute(q1);
-		System.out.println("Update Successful");
+		System.out.println("\n----------------------Update Successful----------------------");
 		con.close();
 		return e;
 	}
@@ -191,10 +191,10 @@ public class ShopDB {
 		Statement st = con.createStatement();
 		String q1 = "Update employee set stock_role='" + sl + "' , update_id='" + z + "', update_date='"
 				+ dtf.format(now) + "' where emp_id=" + x + ";";
-		System.out.println(q1);
-		System.out.println(q1);
+		//System.out.println(q1);
+		//System.out.println(q1);
 		boolean e = st.execute(q1);
-		System.out.println("Update Successful");
+		System.out.println("\n----------------------Update Successful----------------------");
 		con.close();
 		return e;
 	}
@@ -257,7 +257,7 @@ public class ShopDB {
 		Statement st = con.createStatement();
 		boolean te = sb.empidcheck(us);
 		String def = "Select count(*) from employee where password='" + pa + "' and emp_id="+us+";";
-		System.out.println(def);
+		//System.out.println(def);
 		ResultSet ref = st.executeQuery(def);
 		ref.next();
 		int k = ref.getInt(1);

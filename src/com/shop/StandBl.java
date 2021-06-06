@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StandBl {
@@ -14,22 +15,34 @@ public class StandBl {
 	ShopDB sbd;
 	Shop1DB sbd1;
 	Stock stk;
+	Employee e;
 	StandBl sbl;
 	StcAndCust bill;
 	ArrayList<String> arr;
 	HashMap<Integer, String> blpr;
 
-	/*
-	 * void stMg() throws SQLException { sc=new Scanner(System.in); stk=new Stock();
-	 * sbd=new ShopDB(); System.out.println("\n Enter the User ID:- "); int
-	 * u=sc.nextInt(); System.out.println("\n Enter PassWord:- "); String
-	 * pass=sc.nextLine(); String st=sbd.stock(u, "STOCK");
-	 * 
-	 * if ()
-	 * 
-	 * 
-	 * }
-	 */
+	void stMg() throws SQLException {
+		try {
+			sc = new Scanner(System.in);
+			stk = new Stock();
+			sbd = new ShopDB();
+			System.out.print("\n Enter the User ID:- ");
+			int u = sc.nextInt();
+			System.out.print("\n Enter PassWord:- ");
+			String pass = sc.next();
+			String st = sbd.stock(u, "STOCK");
+			if (st.equals("PRIM")) {
+				String g = sbd.emplogin(u, pass);
+				System.out.println(g);
+				if (g.equals("success")) {
+					stk.stockSel(u, st);
+				} else
+					System.out.println("----------------------LOGIN UNSUCCESSFUL----------------------");
+			}
+		} catch (InputMismatchException ime) {
+			System.out.println("Input Mismatch Occurs Please Try Again");
+		}
+	}
 
 	void bill(int a) throws SQLException {
 		int no = 0;
@@ -125,6 +138,8 @@ public class StandBl {
 
 	void printBill(int emp, long mob, ArrayList<String> arr) throws SQLException {
 		sbd1 = new Shop1DB();
+		sbl=new StandBl();
+		e=new Employee();
 		sc = new Scanner(System.in);
 		String leftAlignFormat = "%-13s %-25s %-25s %-25s %-25s %-25s %n";
 		System.out.format(
@@ -139,6 +154,9 @@ public class StandBl {
 		System.out.format("Bill_Date:- " + dtf1.format(now)
 				+ "                                                                                 Emp_id:- " + emp
 				+ "%n");
+		System.out.format("Customer ID:- " + mob);
+		System.out.format(
+				"                                                                                                                                 %n");
 		System.out.format(
 				"+------------+----------------------+------------------------+----------------------+--------------------+----------------------+%n");
 		System.out.format(
@@ -191,10 +209,16 @@ public class StandBl {
 		 * case 3: w = sc.next(); break;
 		 */
 		}
-		int u=sbd1.genBill(emp, mob, w);
-		if (u=='1') {
-		System.out.println("\n BILL GENERATED SUCCESSFULLY");}
-		sbl.bill(emp);
+		int u = sbd1.genBill(emp, mob, w);
+		if (u == '1') {
+			System.out.println(
+					"\n --------------------------------------------BILL GENERATED SUCCESSFULLY--------------------------------------------");
+		}
+		System.out.println("TO  CONTINUE BILLING PRESS '1' or '2' FOR MAIN MENU");
+		int l=sc.nextInt();
+		if (l==1) {
+		sbl.bill(emp);}
+		else e.empSelect(emp);
 
 	}
 

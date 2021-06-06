@@ -32,7 +32,7 @@ public class Admin {
 		ad = new Admin();
 		sbd = new ShopDB();
 		sc = new Scanner(System.in);
-		System.out.println("Plese enter the Below Credentials:- ");
+		System.out.println("\nPlese enter the Below Credentials:- ");
 		System.out.println("\nUserName:- ");
 		String a = sc.nextLine();
 		System.out.println("\nPassWord:- ");
@@ -50,7 +50,7 @@ public class Admin {
 			System.out.format( "Welocme Admin:- "+a+"                                                             Date and Time:- "+dtf.format(now)+"+%n");
 			ad.success(a);
 		} else {
-			System.out.println("\nIncorrect User Name or Password\n");
+			System.out.println("\n----------------------Incorrect User Name or Password----------------------\n");
 			wed.w1();
 		}
 	}
@@ -60,7 +60,7 @@ public class Admin {
 		wed = new Welcome();
 		sc = new Scanner(System.in);
 		do {
-			System.out.println("\nEnter the below Options to Continue");
+			System.out.println("\n----------------------Enter the below Options to Continue----------------------");
 			System.out.println("\n1) Add a new User \n2) Remove User \n3) Update User \n4) Log Out ");
 			int x = sc.nextInt();
 			ad.options(x, a);

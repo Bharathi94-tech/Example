@@ -230,25 +230,25 @@ public class Employee {
 		int r = sbd.setDefpassEmp(i);
 		if (pass.equals("default") && (r > 0)) {
 
-			System.out.println("\n You have logged in with Default PassWord");
+			System.out.println("\n ----------------------You have logged in with Default PassWord----------------------");
 			System.out.println("\n Please enter the New Password:- ");
 			String pa = sc.next();
 			int ret = sbd.empChgPass(i, pa);
 			if (ret == 1) {
 				System.out
-						.println("\n PassWord for the Employee ID " + i + "is Changed and Continue with New Password");
+						.println("\n ----------------------PassWord for the Employee ID "+ i +" is Changed and Continue with New Password----------------------");
 				wl.w1();
 			} else
-				System.out.println("\n PassWord change unsuccessful or the Entered ID is Incorrect");
+				System.out.println("\n ----------------------PassWord change unsuccessful or the Entered ID is Incorrect----------------------");
 			wl.w1();
 		}
 		if (r <= 0) {
 			String tt = sbd.emplogin(i, pass);
 			if (tt.equals("success")) {
-				System.out.println("\n Login Successful");
+				System.out.println("\n ----------------------Login Successful----------------------");
 				e.empSelect(i);
 			} else
-				System.out.println("\n Login as Employee" + i + " is UnSuccessful");
+				System.out.println("\n ----------------------Login as Employee "+ i +" is UnSuccessful----------------------");
 			wl.w1();
 		}
 
@@ -262,7 +262,7 @@ public class Employee {
 		s = new Stock();
 		String r = "";
 		System.out.println(
-				"\n Please select the Options below \n1) Billing \n2) Stocks \n3) Change Password \n4) Log Out");
+				"\n---------------------- Please select the Options below---------------------- \n1) Billing \n2) Stocks \n3) Change Password \n4) Log Out");
 		int x = sc.nextInt();
 		switch (x)
 
@@ -274,7 +274,7 @@ public class Employee {
 				sbl.bill(a);
 				e.empSelect(a);
 			} else
-				System.out.println("\n Employee " + a + " dont have proper permission");
+				System.out.println("\n ----------------------Employee "+ a +" dont have proper permission----------------------");
 			e.empSelect(a);
 
 		case 2:
@@ -305,11 +305,11 @@ public class Employee {
 			if (s1.equals(s2) && r1 == 0) {
 				int l = sbd.empChgPass(a, s2);
 				if (l == '1') {
-					System.out.println("\nPasswWord Change Successful and Continue with New Password");
+					System.out.println("\n----------------------PasswWord Change Successful and Continue with New Password----------------------");
 					wl.w1();
 				}
 			} else
-				System.out.println("\nPassWord Change Unsucessful");
+				System.out.println("\n----------------------PassWord Change Unsucessful----------------------");
 			empSelect(a);
 
 		case 4:
